@@ -1,0 +1,30 @@
+Sub enviar_email()
+
+Dim nome_da_aba As String
+nome_da_aba = InputBox("Digite o nome da aba:")
+Set planilha = ThisWorkbook.Sheets(nome_da_aba)
+Set objeto_outlook = CreateObject("Outlook.Application")
+Set Email = objeto_outlook.createitem(0)
+
+Email.display
+
+Email.to = "x" & ""
+
+Email.cc = "x"
+
+Email.Subject = "y"
+
+texto1 = "Prezado x, bom dia!" & "<br><br><br>" & "De ordem do Sr. x, pedimos para validar as informações do quadro abaixo e confirmar se tiveram alterações.<br><br>"
+
+texto2 = "Solicitamos o envio das informações "
+
+texto3 = "até o dia " & DateAdd("d", 10, Date) & "."
+
+texto4 = "<br><br><br>Lembrando que é muito importante a atualização das informações, tendo em vista que farão parte do relatório de resultados encaminhado mensalmente ao y."
+
+Email.htmlbody = "<div style='font-family: Arial, sans-serif; font-size: 16pt; line-height: 1.5;'>" & _
+texto1 & RangetoHTML(planilha.Range("a2:D5")) & "<br><br>" & texto2 & "<u>" & texto3 & "</u>" & texto4 & "<br><br><br>Qualquer dúvida estou à disposição!<br><br><br>At. te," _
+
+
+
+End Sub
